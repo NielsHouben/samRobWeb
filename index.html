@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+  <div id="app">
+    <form id="setup-input" onsubmit="event.preventDefault(); generate();">
+      <h3>Enter width and height of map!</h3>
+      <label for="width">Width</label>
+      <input id="width" class="input-button" type="number" value="6" required>
+      <label for="height">Height</label>
+      <input id="height" class="input-button" type="number" value="3" required>
+      <Button type="submit">Generate</Button>
+    </form>
+
+    <!-- <img src="./test.svg" alt=""> -->
+    <!-- <svg height="210" width="400">
+      <path d="M150 0 L75 200 L225 200 Z" />
+    </svg> -->
+    <img src="./public/roads/T.svg">
+    <img src="./public/roads/intersect.svg">
+    <img src="./public/roads/straight.svg">
+    <img src="./public/roads/turn.svg">
+
+    <div id="mapHolder">
+
+      <img id="car" src="./public/roads/turn.svg">
+      <div id="map">
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
