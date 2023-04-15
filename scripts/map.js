@@ -30,7 +30,7 @@ export function drawRoad (x, y, connections) {
 
 
     road.style.transform = `rotate(${rotation[connections]}deg)`;
-    road.setAttribute("src", `./public/roads/${piece[connections]}.svg`);
+    road.setAttribute("src", `/roads/${piece[connections]}.svg`);
 
     pos.appendChild(road);
 }

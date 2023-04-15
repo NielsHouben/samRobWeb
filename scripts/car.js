@@ -8,7 +8,7 @@ function createCarElem (x, y, facing, id) {
 
     let carImgs = ["simple-travel-car-top_view", "SimpleDarkBlueCarTopView"];
     let carImg = carImgs[id];
-    car.setAttribute("src", `./public/cars/${carImg}.svg`);
+    car.setAttribute("src", `./cars/${carImg}.svg`);
 
     mapHolderRef.appendChild(car);
 
@@ -63,9 +63,20 @@ export default class Car {
     }
 
 
-    /** makes car path to absolute coordinates */
+    /** 
+     * makes car path to absolute coordinates 
+     1. figure out next move step (by doing dijkstras)
+     2. claim that road (so no other car may drive there)
+     3. actually drive, re-runn algo
+     * */
     goTo (x, y) {
         console.log(window.mapConnections);
+
+
+
+
+
+
 
     }
 

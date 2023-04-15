@@ -6,8 +6,8 @@ const setupInput = document.getElementById("setup-input");
 const mapRef = document.getElementById("map");
 
 export default function generate () {
-    let width = mapWidthRef.value;
-    let height = mapHeightRef.value;
+    let width = parseInt(mapWidthRef.value);
+    let height = parseInt(mapHeightRef.value);
 
     for (let i = 0; i < width * height; i++) {
         // gridItem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
