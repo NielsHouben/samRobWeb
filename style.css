@@ -168,6 +168,8 @@ input-button {
   left: 0;
   top: 0;
   transition: transform 1s;
+
+  cursor: pointer;
 }
 
 
