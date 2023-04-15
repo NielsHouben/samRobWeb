@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -88,23 +88,21 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+:root {
+  color: #213547;
+  background-color: #ffffff;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+a:hover {
+  color: #747bff;
+}
 
-  button {
-    background-color: #3cff00;
-  }
+button {
+  background-color: #3cff00;
+}
 
-  button:hover {
-    background-color: #7fff58;
-  }
+button:hover {
+  background-color: #7fff58;
 }
 
 
@@ -159,15 +157,24 @@ input-button {
 }
 
 
-#car {
+.car {
   position: absolute;
+  width: 60px;
+  height: 60px;
+  padding: 20px;
+
+  z-index: 5;
+
   left: 0;
+  top: 0;
+  transition: transform 1s;
 }
 
 
 #mapHolder {
 
   /* background-color: rgb(255, 0, 238); */
+  position: relative;
   border: 8px solid orange;
-  padding: 5px;
+  /* padding: 5px; */
 }

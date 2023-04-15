@@ -2,6 +2,7 @@ const mapWidthRef = document.getElementById("width");
 const mapHeightRef = document.getElementById("height");
 const setupInput = document.getElementById("setup-input");
 const mapRef = document.getElementById("map");
+const mapHolderRef = document.getElementById("mapHolder");
 
 
 // test with lonely road too!
@@ -15,22 +16,6 @@ let map = [
 
 function getItem (x, y) {
   return document.querySelector(`#map > div:nth-child(${x + mapWidthRef.value * y + 1})`);
-}
-
-function generate () {
-  width = mapWidthRef.value;
-  height = mapHeightRef.value;
-
-  for (let i = 0; i < width * height; i++) {
-    // gridItem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    gridItem = document.createElement("div");
-    gridItem.className = "grid-item";
-    mapRef.appendChild(gridItem);
-  }
-
-  mapRef.style.gridTemplateColumns = "1fr ".repeat(width);
-
-  setupInput.style.display = "none";
 }
 
 function drawRoad (x, y, connections) {
@@ -61,8 +46,72 @@ function drawRoad (x, y, connections) {
   road.setAttribute("src", `./public/roads/${piece[connections]}.svg`);
 
   pos.appendChild(road);
+}
+
+function generate () {
+  width = mapWidthRef.value;
+  height = mapHeightRef.value;
+
+  for (let i = 0; i < width * height; i++) {
+    // gridItem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    gridItem = document.createElement("div");
+    gridItem.className = "grid-item";
+    mapRef.appendChild(gridItem);
+  }
+
+  mapRef.style.gridTemplateColumns = "1fr ".repeat(width);
+
+  setupInput.style.display = "none";
+  drawMap();
+
+  //should take input for where to add car
+  addCar(1, 0, 0, 0);
+}
 
 
+/**
+ * @param {int} facing 0=north, 1=east, 2=south, 3=west
+ */
+function rotateCar (facing, id) {
+  car = document.getElementById(`car${id}`);
+  car.style.transform = `rotate(${90 * facing - 90}deg)`;
+
+}
+
+function moveCar (x, y, id) {
+  car = document.getElementById(`car${id}`);
+  car.style.transform = `translate(${x * 100}px, ${y * 100}px)`;
+}
+
+function addCar (x, y, facing, id) {
+  // if car exists add another different one
+  // console.log(getItem(0, 0).getBoundingClientRect().left);
+
+  car = document.createElement("img");
+
+  car.className = "car";
+
+  // 0 for first, 1 for second
+  car.id = `car${id}`;
+
+  carImgs = ["simple-travel-car-top_view", "SimpleGreenCarTopView"];
+  carImg = carImgs[id];
+  car.setAttribute("src", `./public/cars/${carImg}.svg`);
+
+  car.style.transform = `translate(${x * 100}px, ${y * 100}px)`;
+  car.style.transform = `rotate(-90deg)`;
+
+  mapHolderRef.appendChild(car);
+
+  //tmeproarry
+  // moveCar(2, 0);
+
+}
+
+
+// find a path to x, y, coordinates
+// split path up into instructions
+function pathCar (x, y, id) {
 
 }
 
@@ -91,7 +140,6 @@ function drawMap () {
   // drawRoad(5, 2, "1000");
 
 
-
   // draw car
   // facing = 0;
   // getItem(1, 1).style.borderTop = "5px solid green";
@@ -100,4 +148,4 @@ function drawMap () {
 
 generate();
 
-drawMap();
+// drawMap();
