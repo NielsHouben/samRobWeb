@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "paho": "^1.0.0",
+    "paho-mqtt": "^1.1.0"
   }
 }
