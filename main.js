@@ -6,6 +6,7 @@ import { getMapCost, calculatePath } from "./scripts/navigate.js";
 import { sendMsg } from "./scripts/mqtt.js";
 
 setTimeout(() => {
+  // sendMsg("World", "he")
   sendMsg("/newRoad", JSON.stringify({ x: 0, y: 0, connections: "0110" }))
   sendMsg("/car0", JSON.stringify({ x: 1, y: 1, rotation: 90 }))
   sendMsg("/car1", JSON.stringify({ x: 0, y: 1, rotation: 180 }))

@@ -25,6 +25,7 @@ function onConnect () {
     client.subscribe("/newRoad");
     client.subscribe("/car0");
     client.subscribe("/car1");
+    client.subscribe("/map");
 
     // let message = new Paho.Message("Hello");
     // message.destinationName = "World";
@@ -42,14 +43,14 @@ function onConnectionLost (responseObject) {
 // called when a message arrives
 function onMessageArrived (message) {
     // console.log("onMessageArrived:" + message.payloadString);
-    // console.log(message.topic)
+    console.log(message.topic)
     let payload
     switch (message.topic) {
         case "/newRoad":
             payload = JSON.parse(message.payloadString);
             window.mapConnections[payload.y][payload.x] = payload.connections
             // drawMap(window.mapConnections)
-            sendMsg("/map", JSON.parse(window.mapConnections))
+            sendMsg("/map", JSON.stringify(window.mapConnections))
             drawRoad(payload.x, payload.y, payload.connections)
             break;
         case "/car0":
@@ -69,6 +70,10 @@ function onMessageArrived (message) {
             // drawRoad(payload.x, payload.y, payload.connections)
             break;
 
+        case "/map":
+            payload = JSON.parse(message.payloadString);
+            console.log(payload)
+            break
         default:
             console.log("got message on topic that is not handled")
             console.log(message.topic)
