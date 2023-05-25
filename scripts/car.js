@@ -37,7 +37,8 @@ export default class Car {
     draw () {
         let x = this.x * 100;
         let y = this.y * 100;
-        let rotation = 90 * this.facing - 90;
+        // let rotation = 90 * this.facing - 90;
+        let rotation = this.facing - 90
         this.elRef.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
     }
 

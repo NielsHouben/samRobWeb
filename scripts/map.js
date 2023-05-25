@@ -35,6 +35,24 @@ export function drawRoad (x, y, connections) {
     pos.appendChild(road);
 }
 
+//probably broken...
+export function drawMap (connMap) {
+    for (let y = 0; y < connMap.length; y++) {
+        const element = connMap[y];
+        // console.log(element, y)
+        for (let x = 0; x < element.length; x++) {
+            // console.log(x, y, element[x])
+            if (element[x] != undefined) {
+                console.log(x, y, "drawing")
+                drawRoad(x, y, element[x])
+            }
+        }
+
+    }
+
+
+}
+
 export function drawDefaultMap () {
     drawRoad(0, 0, "0110");
     drawRoad(1, 0, "0101");
@@ -64,3 +82,4 @@ export function drawDefaultMap () {
     // facing = 0;
     // getItem(1, 1).style.borderTop = "5px solid green";
 }
+

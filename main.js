@@ -1,59 +1,45 @@
 import Car from "./scripts/car.js";
-import { drawRoad } from "./scripts/map.js";
-import { drawDefaultMap } from "./scripts/map.js";
+
+import { drawDefaultMap, drawMap } from "./scripts/map.js";
 import generate from "./scripts/generate.js";
 import { getMapCost, calculatePath } from "./scripts/navigate.js";
+import { sendMsg } from "./scripts/mqtt.js";
 
-import Paho from "paho-mqtt";
-
-// console.log(new Paho.Client);
-
-const client = new Paho.Client("10.22.3.219", 8883, "clientIdWeb");
-// set callback handlers
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-// connect the client
-client.connect({ onSuccess: onConnect });
-
-// called when the client connects
-function onConnect() {
-  // Once a connection has been made, make a subscription and send a message.
-  console.log("onConnect");
-  client.subscribe("World");
-  let message = new Paho.Message("Hello");
-  message.destinationName = "World";
-  client.send(message);
-}
-
-// called when the client loses its connection
-function onConnectionLost(responseObject) {
-  if (responseObject.errorCode !== 0) {
-    console.log("onConnectionLost:" + responseObject.errorMessage);
-  }
-}
-
-// called when a message arrives
-function onMessageArrived(message) {
-  console.log("onMessageArrived:" + message.payloadString);
-}
-
+setTimeout(() => {
+  sendMsg("/newRoad", JSON.stringify({ x: 0, y: 0, connections: "0110" }))
+  sendMsg("/car0", JSON.stringify({ x: 1, y: 1, rotation: 90 }))
+  sendMsg("/car1", JSON.stringify({ x: 0, y: 1, rotation: 180 }))
+}, 2000);
 // should probably make something that requires map to be generated for things to happen
 generate();
 
-drawDefaultMap();
+window.mapConnections = [
+  [undefined, undefined, undefined, undefined, undefined, undefined],
+  [undefined, undefined, undefined, undefined, undefined, undefined],
+  [undefined, undefined, undefined, undefined, undefined, undefined],
+];
+// window.mapConnections = [
+//   ["0110", "0101", "0111", "0111", "0101", "0011"],
+//   ["1100", "0011", "1100", "1111", "0011", "1010"],
+//   ["0110", "1101", "0101", "1101", "1101", "1001"],
+// ];
 
-let car0 = new Car(0, 0, 0, 0);
+// drawMap(window.mapConnections)
+// drawDefaultMap();
+// drawRoad(0, 0, "0110");
 
+let car0 = new Car(2, 2, 0, 0);
 window.car0 = car0;
 
-window.mapConnections = [
-  ["0110", "0101", "0111", "0111", "0101", "0011"],
-  ["1100", "0011", "1100", "1111", "0011", "1010"],
-  ["0110", "1101", "0101", "1101", "1101", "1001"],
-];
+let car1 = new Car(0, 0, 0, 1);
+window.car1 = car1;
+// car0.x = 1
+// car0.y = 1
+// car0.draw()
+// car0.move(1)
 
-let path = calculatePath(car0, 5, 2);
 
-console.log(path);
+// let path = calculatePath(car0, 5, 2);
+// console.log(path);
 
 // thius sh
