@@ -63,8 +63,9 @@ function onMessageArrived (message) {
             break;
         case "/car1":
             payload = JSON.parse(message.payloadString);
+            console.log(payload)
             window.car1.x = payload.x
-            window.car1.y = payload.y
+            window.car1.y = payload.y * -1
             window.car1.facing = payload.rotation
             window.car1.draw()
             // drawRoad(payload.x, payload.y, payload.connections)

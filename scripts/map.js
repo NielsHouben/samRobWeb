@@ -9,6 +9,7 @@ export function drawRoad (x, y, connections) {
     // turn
 
     let pos = getItem(x, y);
+    console.log(pos)
     let road = document.createElement("img");
 
     // // road.style.transform = "rotate(180deg)";

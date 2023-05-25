@@ -47,8 +47,8 @@ h1 {
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  /* will-change: filter; */
+  /* transition: filter 300ms; */
 }
 
 .logo:hover {
@@ -76,7 +76,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  /* transition: border-color 0.25s; */
 }
 
 button:hover {
@@ -167,7 +167,7 @@ input-button {
 
   left: 0;
   top: 0;
-  transition: transform 1s;
+  /* transition: transform 600ms; */
 
   cursor: pointer;
 }
