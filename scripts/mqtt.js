@@ -57,7 +57,7 @@ function onMessageArrived (message) {
             payload = JSON.parse(message.payloadString);
             window.car0.x = payload.x
             window.car0.y = payload.y
-            window.car0.facing = payload.rotation
+            window.car0.facing = payload.rotation + 90
             window.car0.draw()
             // drawRoad(payload.x, payload.y, payload.connections)
             break;
