@@ -73,7 +73,7 @@ export function getMapCost (startX, startY) {
  * TODO, make it priorotise less turns
 */
 export function calculatePath (car, x, y) {
-    mapCost = getMapCost(car.x, car.y);
+    mapCost = getMapCost(Math.round(car.x), Math.round(car.y));
     console.log(mapCost);
 
     let cost = mapCost[y][x];
@@ -88,7 +88,7 @@ export function calculatePath (car, x, y) {
     // console.log(cost);
 
     let i = 0;
-    while (x != car.x || y != car.y) {
+    while (x != Math.round(car.x) || y != Math.round(car.y)) {
 
         let connections = window.mapConnections[y][x];
         if (connections[0] == 1 && onMap(x, y - 1) && mapCost[y - 1][x] == cost - 1) {

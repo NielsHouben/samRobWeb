@@ -45,8 +45,8 @@ window.car1 = car1;
 // 
 
 function calculatePathBlue() {
-  let x = Number(document.getElementById("x-blue").value);
-  let y = Number(document.getElementById("y-blue").value);
+  let x = Math.round(Number(document.getElementById("x-blue").value));
+  let y = Math.round(Number(document.getElementById("y-blue").value));
   
   let path = calculatePath(car1, x, y);
   
