@@ -115,3 +115,5 @@ export function calculatePath (car, x, y) {
 
     return locations.reverse();
 }
+
+window.calculatePath = calculatePath

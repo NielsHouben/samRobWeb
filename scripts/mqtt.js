@@ -3,7 +3,7 @@ import { drawMap, drawRoad } from "./map.js";
 
 // console.log(new Paho.Client);
 
-const client = new Paho.Client("10.22.4.31", 8883, "clientIdWeb");
+const client = new Paho.Client("10.22.2.111", 8883, "clientIdWeb");
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;

@@ -15,16 +15,17 @@ setTimeout(() => {
 // should probably make something that requires map to be generated for things to happen
 generate();
 
+//window.mapConnections = [
+//  [undefined, undefined, undefined, undefined, undefined, undefined],
+//  [undefined, undefined, undefined, undefined, undefined, undefined],
+//  [undefined, undefined, undefined, undefined, undefined, undefined],
+//];
+//
 window.mapConnections = [
-  [undefined, undefined, undefined, undefined, undefined, undefined],
-  [undefined, undefined, undefined, undefined, undefined, undefined],
-  [undefined, undefined, undefined, undefined, undefined, undefined],
+  ["0110", "0101", "0111", "0111", "0101", "0011"],
+  ["1100", "0011", "1100", "1111", "0011", "1010"],
+  ["0110", "1101", "0101", "1101", "1101", "1001"],
 ];
-// window.mapConnections = [
-//   ["0110", "0101", "0111", "0111", "0101", "0011"],
-//   ["1100", "0011", "1100", "1111", "0011", "1010"],
-//   ["0110", "1101", "0101", "1101", "1101", "1001"],
-// ];
 
 // drawMap(window.mapConnections)
 drawDefaultMap();
@@ -35,13 +36,26 @@ window.car0 = car0;
 
 let car1 = new Car(0, 0, 0, 1);
 window.car1 = car1;
+
+
 // car0.x = 1
 // car0.y = 1
 // car0.draw()
 // car0.move(1)
+// 
 
+function calculatePathBlue() {
+  let x = Number(document.getElementById("x-blue").value);
+  let y = Number(document.getElementById("y-blue").value);
+  
+  let path = calculatePath(car1, x, y);
+  
+  sendMsg("tankCommandTopic", JSON.stringify({target: path, points: path.length}, null, "\t"))
+  console.log({target: path})
+}
+window.calculatePathBlue = calculatePathBlue
 
-// let path = calculatePath(car0, 5, 2);
-// console.log(path);
+let path = calculatePath(car1, 5, 2);
+console.log(path);
 
 // thius sh
