@@ -180,3 +180,8 @@ input-button {
   border: 8px solid orange;
   /* padding: 5px; */
 }
+
+label {
+  display: inline-block;
+  text-align: right;
+}
