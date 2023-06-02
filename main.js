@@ -8,27 +8,32 @@ import { sendMsg } from "./scripts/mqtt.js";
 setTimeout(() => {
   // sendMsg("World", "he")
   //NOTE, can only draw road where road has not already been replaced.
-  // sendMsg("/newRoad", JSON.stringify({ x: 0, y: 0, connections: "0110" }))
+  // sendMsg("/newRoad", JSON.stringify({ x: 1, y: 0, connections: "0111" }))
   // sendMsg("/car0", JSON.stringify({ x: 1, y: 1, rotation: 90 }))
   // sendMsg("/car1", JSON.stringify({ x: 0, y: 1, rotation: 180 }))
 }, 2000);
 // should probably make something that requires map to be generated for things to happen
 generate();
 
-//window.mapConnections = [
-//  [undefined, undefined, undefined, undefined, undefined, undefined],
-//  [undefined, undefined, undefined, undefined, undefined, undefined],
-//  [undefined, undefined, undefined, undefined, undefined, undefined],
-//];
+// window.mapConnections = [
+//   [undefined, undefined, undefined, undefined, undefined, undefined],
+//   [undefined, undefined, undefined, undefined, undefined, undefined],
+//   [undefined, undefined, undefined, undefined, undefined, undefined],
+// ];
 //
+// window.mapConnections = [
+//   ["0110", "0101", "0111", "0111", "0101", "0011"],
+//   ["1100", "0011", "1100", "1111", "0011", "1010"],
+//   ["0110", "1101", "0101", "1101", "1101", "1001"],
+// ];
 window.mapConnections = [
-  ["0110", "0101", "0111", "0111", "0101", "0011"],
-  ["1100", "0011", "1100", "1111", "0011", "1010"],
-  ["0110", "1101", "0101", "1101", "1101", "1001"],
+  ["0110", "0111", "0111", "0011", "0000", "0000"],
+  ["1110", "1111", "1001", "1100", "0101", "0011"],
+  ["1100", "1101", "0101", "0101", "0101", "1001"],
 ];
 
-// drawMap(window.mapConnections)
-drawDefaultMap();
+drawMap(window.mapConnections)
+// drawDefaultMap();
 // drawRoad(0, 0, "0110");
 
 let car0 = new Car(2, 2, 0, 0);
@@ -44,18 +49,28 @@ window.car1 = car1;
 // car0.move(1)
 // 
 
-function calculatePathBlue() {
+function calculatePathBlue () {
   let x = Math.round(Number(document.getElementById("x-blue").value));
   let y = Math.round(Number(document.getElementById("y-blue").value));
-  
+
   let path = calculatePath(car1, x, y);
-  
-  sendMsg("tankCommandTopic", JSON.stringify({target: path, points: path.length}, null, "\t"))
-  console.log({target: path})
+
+  sendMsg("tankCommandTopic", JSON.stringify({ target: path, points: path.length }, null, "\t"))
+  console.log({ target: path })
 }
 window.calculatePathBlue = calculatePathBlue
 
-let path = calculatePath(car1, 5, 2);
-console.log(path);
+function calculatePathRed () {
+  let x = Math.round(Number(document.getElementById("x-red").value));
+  let y = Math.round(Number(document.getElementById("y-red").value));
+
+  let path = calculatePath(car0, x, y);
+
+  // sendMsg("tankCommandTopic", JSON.stringify({target: path, points: path.length}, null, "\t"))
+  console.log({ target: path })
+}
+window.calculatePathRed = calculatePathRed
+// let path = calculatePath(car1, 5, 2);
+// console.log(path);
 
 // thius sh
